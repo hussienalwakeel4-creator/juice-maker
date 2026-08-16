@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Juice Maker | فيديو المشروب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+            background: #F9F9F2;
+            direction: rtl;
+            min-height: 100vh;
+        }
+
+        :root {
+            --forest-green: #2D6A4F;
+            --light-green: #A7C957;
+        }
+
+        nav {
+            background: var(--forest-green);
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .inline-logo {
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 20%;
+            vertical-align: middle;
+            object-fit: cover;
+            margin: 0 4px;
+        }
+
+        .back-btn {
+            background: #F4E285;
+            color: var(--forest-green);
+            padding: 8px 18px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 16px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: #000;
+            display: flex;
+            justify-content: center;
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        .juice-info {
+            background: white;
+            border-radius: 25px;
+            padding: 25px;
+            margin: 20px 16px;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .juice-info h1 {
+            color: var(--forest-green);
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            background: var(--light-green);
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 20px;
+            margin: 12px 0;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        footer {
+            background: var(--forest-green);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+        @media (max-width: 600px) {
+            .juice-info {
+                padding: 20px 15px;
+                margin: 15px 12px;
+            }
+            .juice-info h1 {
+                font-size: 24px;
+            }
+            .price {
+                font-size: 16px;
+                padding: 6px 20px;
+            }
+            .whatsapp-btn {
+                padding: 10px 24px;
+                font-size: 15px;
+            }
+            nav {
+                padding: 12px 15px;
+                gap: 8px;
+            }
+            .back-btn {
+                font-size: 13px;
+                padding: 6px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo"><img src="logo.jpg" alt="Logo" class="brand-logo"> Juice Maker</a>
+        <a href="index.html#menu" class="back-btn">← رجوع للمنيو</a>
+    </nav>
+
+    <div class="video-container">
+        <div class="video-wrapper" id="videoWrapper">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="فيديو المشروب" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <div class="juice-info" id="juiceInfo">
+        <h1>🍹 تحميل...</h1>
+        <div class="price">...</div>
+        <br>
+        <a href="#" class="whatsapp-btn" id="whatsappLink">📲 اطلب الآن</a>
+    </div>
+
+    <footer>
+        <div style="margin-bottom: 10px;">
+            <a href="https://www.facebook.com/juicemaker.eg" target="_blank" style="color: white; text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; background: #1877F2; padding: 6px 15px; border-radius: 20px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"/></svg>
+                فيسبوك
+            </a>
+        </div>
+        <p>© 2026 Juice Maker - عصائر طبيعية 100%</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const juiceName = urlParams.get('name') || 'عصير';
+        const juicePrice = urlParams.get('price') || '00';
+        const juiceCat = urlParams.get('cat') || '';
+
+        const backBtn = document.querySelector('.back-btn');
+        if (juiceCat) {
+            backBtn.href = `index.html?cat=${encodeURIComponent(juiceCat)}#menu`;
+        }
+
+        document.title = `${juiceName} | Juice Maker`;
+
+        const descriptions = {
+            'بطيخ': 'حمار وحلاوة عالسكين يا بطيخ 😋<br>بطيخ ساقع والمود رايق 🍉<br>متنساش تسأل علي عرض البطيخ 🔥🔥',
+            'أفوكادو': 'مش أي عصير دا level تاني خالص 😋🔥<br>أفوكادو يظبطلك مزاجك عالآخر 💚🔥',
+            'أفوكادو مكسرات': 'مش كل المشاكل ليها حل… بس في مشاكل محتاجة باور بس ⚡<br>كوباية واحدة وهتفهم ليه ناس كتير بترجع تاني<br>تركيزك… نشاطك… مودك… كله هيتظبط فجأة 😎',
+            'جرين مود': 'مش أي عصير دا level تاني خالص 😋🔥<br>أفوكادو ومكس يظبطلك مزاجك عالآخر 💚🔥',
+            'بلو باشون': 'اللي بيحصل في الكوباية دي مش هزار 😱<br>ده Blue Passion 💙✨'
+        };
+
+        const defaultDesc = `
+            عصير طبيعي طازج 100%<br>
+            سيب نفسك للحلو، عصير طبيعي يظبط يومك 😍
+        `;
+
+        const juiceDesc = descriptions[juiceName] || defaultDesc;
+
+        const juiceInfo = document.getElementById('juiceInfo');
+        juiceInfo.innerHTML = `
+        <h1>${juiceName}</h1>
+        <p style="color: #444; margin: 15px 0; font-size: 15px; line-height: 1.8; font-weight: 600;">${juiceDesc}</p>
+        <div class="price">${juicePrice}</div>
+        <br>
+        <a href="https://wa.me/201149436143?text=أريد%20طلب%20${encodeURIComponent(juiceName)}" 
+           class="whatsapp-btn" 
+           target="_blank">
+           📲 اطلب ${juiceName} الآن
+        </a>
+    `;
+
+        const videoWrapper = document.getElementById('videoWrapper');
+        
+        const videoMap = {
+            'بطيخ': 'بطيخ.mp4',
+            'أفوكادو': 'افوكادو.mp4',
+            'أفوكادو مكسرات': 'افوكادو 2.mp4',
+            'جرين مود': 'افوكادو 2.mp4',
+            'بلو باشون': 'بلو باشون.mp4'
+        };
+
+        const localVideo = videoMap[juiceName] || 'video.mp4';
+
+        if (Array.isArray(localVideo)) {
+            // Video Playlist
+            videoWrapper.innerHTML = `
+            <video id="juicePlayer" controls autoplay muted playsinline>
+                <source src="${localVideo[0]}" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+            `;
+            const player = document.getElementById('juicePlayer');
+            let vIndex = 0;
+            player.addEventListener('ended', () => {
+                vIndex = (vIndex + 1) % localVideo.length;
+                player.src = localVideo[vIndex];
+                player.play();
+            });
+        } else {
+            // Single Video
+            videoWrapper.innerHTML = `
+            <video controls autoplay loop muted playsinline>
+                <source src="${localVideo}" type="video/mp4">
+                متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+            `;
+        }
+    </script>
+
+</body>
+
+</html>

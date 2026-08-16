@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Juice Maker | طازج.. طبيعي.. لذيذ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, 'Segoe UI', 'Tahoma', system-ui, sans-serif;
+            background: #F3FAF0;
+            color: #1A2D12;
+            direction: rtl;
+            overflow-x: hidden;
+            padding-bottom: 80px; /* Space for floating cart */
+        }
+
+        :root {
+            --forest-green: #1B6B2F;
+            --light-green: #5BAD28;
+            --warm-beige: #C8E66A;
+            --cream-bg: #EBF5E1;
+            --cart-red: #DC2626;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #14522A, #1B6B2F);
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(27, 107, 47, 0.35);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .main-hero-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .inline-logo {
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 20%;
+            vertical-align: middle;
+            object-fit: cover;
+            margin: 0 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        @media (max-width: 450px) {
+            .logo span {
+                display: none;
+            }
+            .nav-links {
+                gap: 10px;
+            }
+            .nav-links a {
+                font-size: 14px;
+            }
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+            overflow: hidden;
+            background: linear-gradient(160deg, #14522A 0%, #1B6B2F 50%, #237A38 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10,50,20,0.15), rgba(20,82,42,0.08));
+            z-index: 1;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 18px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-buttons-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            backdrop-filter: blur(10px);
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.2s;
+        }
+        
+        .hero-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-btn-wa {
+            background: rgba(37, 211, 102, 0.85);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .hero-btn-fb {
+            background: rgba(24, 119, 242, 0.85);
+            box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                display: flex;
+                flex-direction: column;
+                min-height: auto;
+                padding: 0;
+            }
+            .hero-video {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16/9;
+                height: auto;
+                opacity: 1;
+            }
+            .hero-overlay {
+                display: none;
+            }
+            .hero-content {
+                padding: 15px 10px 20px;
+                background: linear-gradient(135deg, #14522A, #1B6B2F);
+                width: 100%;
+            }
+            .hero h1 {
+                font-size: 22px;
+                text-shadow: none;
+                margin-bottom: 4px;
+            }
+            .hero p {
+                font-size: 13px;
+                line-height: 1.5;
+                text-shadow: none;
+            }
+            .main-hero-logo {
+                width: 45px;
+                height: 45px;
+                margin-bottom: 8px;
+            }
+            .hero-buttons-container {
+                margin-top: 10px;
+                gap: 8px;
+            }
+            .hero-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            .hero-btn svg {
+                width: 11px;
+                height: 11px;
+            }
+        }
+
+        .features {
+            padding: 35px 15px;
+            background: var(--cream-bg);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 24px;
+            color: #1B6B2F;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .feature-card {
+            background: white;
+            width: 220px;
+            padding: 25px 15px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(27, 107, 47, 0.1);
+            border-bottom: 4px solid #5BAD28;
+        }
+
+        .feature-card h3 {
+            color: #1B6B2F;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            color: #1B6B2F;
+            margin: 30px 0 15px;
+            font-weight: 900;
+        }
+
+        .summer-special {
+            padding: 30px 25px;
+            background: linear-gradient(135deg, #f0fae8, #e3f5d4);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            text-align: right;
+            margin: 40px 16px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(27, 107, 47, 0.1);
+            border: 2px solid rgba(91, 173, 40, 0.25);
+        }
+
+        .summer-special-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .summer-special h2 {
+            font-size: 26px;
+            color: #1B6B2F;
+            margin-bottom: 12px;
+        }
+
+        .summer-special p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.7;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .summer-video-container {
+            width: 160px;
+            min-width: 160px;
+            flex-shrink: 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(27, 107, 47, 0.22);
+            border: 4px solid #5BAD28;
+            transform: rotate(-2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .summer-video-container:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .summer-video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 12px;
+            margin-bottom: 25px;
+        }
+
+        .cat-btn {
+            background: #D9F0C8;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #14522A;
+        }
+
+        .cat-btn.active {
+            background: linear-gradient(135deg, #1B6B2F, #5BAD28);
+            color: white;
+            box-shadow: 0 4px 12px rgba(27, 107, 47, 0.4);
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            padding: 0 12px 40px;
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .juice-card {
+            background: white;
+            width: calc(50% - 7px);
+            min-width: 155px;
+            max-width: 190px;
+            padding: 24px 12px 16px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(27, 107, 47, 0.08);
+            border: 1px solid rgba(91, 173, 40, 0.18);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .juice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #14522A, #5BAD28, #C8E66A);
+        }
+
+        .juice-card:active {
+            transform: scale(0.98);
+        }
+
+        .juice-card h3 {
+            color: #1B6B2F;
+            font-size: 16px;
+            font-weight: 900;
+            margin: 0 0 8px;
+        }
+
+        .juice-card p {
+            font-size: 11px;
+            color: #777;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .price {
+            background: linear-gradient(135deg, #1B6B2F, #5BAD28);
+            color: white;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 6px 0;
+            box-shadow: 0 2px 8px rgba(27, 107, 47, 0.35);
+        }
+
+        .video-btn {
+            background: #eee;
+            color: #333;
+            border: none;
+            padding: 6px 8px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 11px;
+            text-decoration: none;
+            display: inline-block;
+            width: 90%;
+            margin-top: 5px;
+        }
+
+        .add-cart-btn {
+            background: linear-gradient(135deg, #1B6B2F, #5BAD28);
+            color: white;
+            border: none;
+            padding: 8px 8px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            display: inline-block;
+            width: 90%;
+            margin-top: 8px;
+            box-shadow: 0 3px 10px rgba(27, 107, 47, 0.35);
+            transition: 0.2s;
+        }
+
+        .add-cart-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* CART STYLES */
+        .cart-float-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #1B6B2F, #5BAD28);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 18px rgba(27, 107, 47, 0.5);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s;
+            display: none;
+        }
+
+        .cart-float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--cart-red);
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-content {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .cart-header h2 {
+            color: #1B6B2F;
+            font-size: 20px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #777;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-right: 5px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .cart-item-price {
+            font-size: 12px;
+            color: #5BAD28;
+            font-weight: bold;
+        }
+
+        .cart-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 2px 8px;
+        }
+
+        .cart-controls button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1B6B2F;
+            cursor: pointer;
+            width: 20px;
+            text-align: center;
+        }
+
+        .cart-controls span {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .cart-footer {
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1B6B2F;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: #333;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 2000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .whatsapp-cta {
+            background: linear-gradient(135deg, #14522A, #1B6B2F, #5BAD28);
+            text-align: center;
+            padding: 35px 15px;
+            margin: 20px 12px;
+            border-radius: 22px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(27, 107, 47, 0.3);
+        }
+
+        .whatsapp-cta h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .big-wa-btn {
+            background: white;
+            color: #1B6B2F;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #0F3D1E, #14522A);
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .features {
+                padding: 25px 12px;
+            }
+            .features h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            .features p[style] {
+                font-size: 13px !important;
+                margin-bottom: 20px !important;
+            }
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .feature-card {
+                width: 100%;
+                padding: 15px 8px;
+                border-radius: 12px;
+                min-width: 0;
+            }
+            .feature-card h3 {
+                font-size: 14px;
+            }
+            .feature-card p {
+                font-size: 11px;
+            }
+            .section-title {
+                font-size: 20px;
+                margin: 22px 0 12px;
+            }
+            .juice-card {
+                width: calc(50% - 6px);
+                min-width: 135px;
+                padding: 15px 8px 12px;
+            }
+            .juice-card h3 {
+                font-size: 14px;
+            }
+            .juice-card p {
+                font-size: 10px;
+            }
+            .price {
+                font-size: 13px;
+                padding: 3px 10px;
+            }
+            .video-btn, .add-cart-btn {
+                font-size: 11px;
+                padding: 6px;
+            }
+            .whatsapp-cta {
+                padding: 28px 15px;
+                margin: 15px 10px;
+                border-radius: 18px;
+            }
+            .whatsapp-cta h2 {
+                font-size: 20px;
+                margin-bottom: 10px;
+            }
+            .big-wa-btn {
+                padding: 11px 22px;
+                font-size: 14px;
+            }
+            footer {
+                padding: 20px 15px;
+            }
+            footer div[style] {
+                font-size: 13px;
+            }
+            .cat-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            .summer-special {
+                padding: 18px 14px;
+                margin: 15px 12px;
+                border-radius: 18px;
+                gap: 14px;
+            }
+            .summer-special h2 {
+                font-size: 17px;
+                margin-bottom: 6px;
+            }
+            .summer-special p {
+                font-size: 11px;
+                line-height: 1.5;
+            }
+            .summer-video-container {
+                width: 100px;
+                min-width: 100px;
+                border-width: 3px;
+                border-radius: 14px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            .juice-card {
+                width: 180px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="toast" id="toastMsg">تم الإضافة بنجاح</div>
+    
+    <!-- Cart Floating Button -->
+    <div class="cart-float-btn" id="cartBtn" onclick="toggleCart()">
+        🛒
+        <div class="cart-badge" id="cartCount">0</div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>سلة الطلبات 🛒</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Items will be injected here -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>الإجمالي:</span>
+                    <span id="cartTotal">0 ج</span>
+                </div>
+                <button class="checkout-btn" onclick="sendOrder()">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                    </svg>
+                    تأكيد الطلب واتساب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo.jpg" alt="Juice Maker Logo" class="brand-logo">
+            <span>Juice Maker</span>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="#features">المميزات</a>
+            <a href="#menu">المنيو</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="public.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="logo.jpg" alt="Juice Maker Logo" class="main-hero-logo">
+            <h1>Different Juice Experience</h1>
+            <p>Juice Maker جاي يقلب مفهوم العصير اللي انت عارفه 👀<br>نكهة مختلفة • تقديم مختلف • إحساس مختلف</p>
+
+            <div class="hero-buttons-container">
+        
+                <a href="https://www.facebook.com/juicemaker.eg" target="_blank" class="hero-btn hero-btn-fb">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z" />
+                    </svg>
+                    تابعنا فيسبوك
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>ليه تختار Juice Maker؟</h2>
+        <p style="margin-bottom: 30px; font-size: 16px; color: #555; font-weight: 500;">ذوقك العالي… ليه مكانه 😎 ومكانه
+            أكيد عند Juice Maker 💚</p>
+        <div class="features-grid">
+            <div class="feature-card">🍓<h3>فاكهة فريش 100%</h3>
+                <p>سيب نفسك للحلو، عصير طبيعي يظبط يومك 😍</p>
+            </div>
+            <div class="feature-card">🌿<h3>إحساس Refresh</h3>
+                <p>مش كل الـ Refresh بييجي نوم 😌 أوقات بييجي من أول كوباية</p>
+            </div>
+            <div class="feature-card">⚡<h3>باور ونشاط</h3>
+                <p>المزاج محتاج طاقة؟ مفيش غير الطبيعي يظبط مودك 😂🔥</p>
+            </div>
+            <div class="feature-card">✨<h3>إضافات عالمية</h3>
+                <p>New cup, New vibe! خلطات حصرية تقلب الموازين</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <h2 class="section-title" id="menu">🍍 منيو الانتعاش</h2>
+    <div id="categoryTabs" class="category-tabs"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+
+    <section class="whatsapp-cta">
+        <h2>جاهز للانتعاش؟ 🍊</h2>
+        <p>اطلب اللي نفسك فيه ويوصلك لحد عندك!</p>
+    </section>
+
+    <footer>
+        <div style="margin-bottom: 15px; font-size: 14px; line-height: 1.6;">
+            📍 <strong>العنوان:</strong> العاشر من رمضان – سكاي مول<br>أمام جامعة الابتكار والموقف الجديد
+        </div>
+        <div style="margin: 20px 0;">
+            <p style="font-size: 15px; font-weight: bold; margin-bottom: 12px; color: var(--warm-beige);">عشان متفوتش عروضنا وكل جديد بنعمله، خليك دايماً معانا 👇</p>
+            <a href="https://www.facebook.com/juicemaker.eg" target="_blank"
+                style="color: white; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; background: #1877F2; padding: 8px 20px; border-radius: 30px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z" />
+                </svg>
+                تابعنا على فيسبوك
+            </a>
+        </div>
+        <p>© 2026 Juice Maker - طازج.. طبيعي.. لذيذ</p>
+    </footer>
+
+    <script>
+        const menuData = {
+            "الفريش / سموزى 🍊": [
+                { name: "برتقال", price: "50 ج", desc: "برتقال طبيعي 100%" },
+                { name: "بطيخ", price: "60 ج", desc: "بطيخ فريش" },
+                { name: "بطيخ نعناع", price: "70 ج", desc: "بطيخ بالنعناع المنعش" },
+                { name: "كانتالوب", price: "60 ج", desc: "كانتالوب طازج" },
+                { name: "عنب", price: "60 ج", desc: "عنب طبيعي" },
+                { name: "ليمون", price: "60 ج", desc: "ليمون فريش" },
+                { name: "ليمون نعناع", price: "60 ج", desc: "ليمون بالنعناع المنعش" },
+                { name: "فراولة", price: "65 ج", desc: "فراولة طازجة" },
+                { name: "فراولة نعناع", price: "70 ج", desc: "فراولة بالنعناع" },
+                { name: "جوافة", price: "65 ج", desc: "جوافة طبيعية" },
+                { name: "مانجو", price: "70 ج", desc: "مانجو فريش" },
+                { name: "مانجو نعناع", price: "80 ج", desc: "مانجو بالنعناع المنعش" },
+                { name: "خوخ", price: "70 ج", desc: "خوخ فريش" },
+                { name: "تين شوكي", price: "70 ج", desc: "تين شوكي طبيعي" },
+                { name: "كوكتيل خلاط", price: "70 ج", desc: "كوكتيل فواكه بالخلاط" },
+                { name: "تفاح", price: "80 ج", desc: "تفاح فريش" },
+                { name: "عصير رمان", price: "80 ج", desc: "رمان طبيعي" },
+                { name: "موز باللبن", price: "80 ج", desc: "موز طازج باللبن" },
+                { name: "فراولة باللبن", price: "80 ج", desc: "فراولة طازجة باللبن" },
+                { name: "بلح باللبن", price: "80 ج", desc: "بلح طبيعي باللبن" },
+                { name: "كيوي", price: "85 ج", desc: "كيوي فريش" },
+                { name: "أناناس", price: "120 ج", desc: "أناناس طازج" },
+                { name: "أناناس ليمون", price: "120 ج", desc: "أناناس مع ليمون" }
+            ],
+            "ميكسات 🥭": [
+                { name: "بيناكولادا", price: "140 ج", desc: "ميكس بيناكولادا" },
+                { name: "مانجو خوخ", price: "90 ج", desc: "مانجو مع خوخ" },
+                { name: "مانجو كيوي", price: "90 ج", desc: "مانجو مع كيوي" },
+                { name: "مانجو باشون", price: "90 ج", desc: "مانجو مع باشون فروت" },
+                { name: "أناناس زنجبيل", price: "120 ج", desc: "أناناس مع زنجبيل" }
+            ],
+            "الزبادي 🥛": [
+                { name: "زبادي عسل", price: "80 ج", desc: "زبادي بالعسل" },
+                { name: "زبادي فراولة", price: "90 ج", desc: "زبادي بالفراولة" },
+                { name: "زبادي مانجو", price: "90 ج", desc: "زبادي بالمانجو" },
+                { name: "زبادي باشون", price: "90 ج", desc: "زبادي بالباشون فروت" },
+                { name: "زبادي خوخ", price: "90 ج", desc: "زبادي بالخوخ" },
+                { name: "زبادي بيري", price: "90 ج", desc: "زبادي بالبيري" }
+            ],
+            "الميلك شيك 🥤": [
+                { name: "فراولة", price: "90 ج", desc: "ميلك شيك فراولة" },
+                { name: "فانيليا", price: "90 ج", desc: "ميلك شيك فانيليا" },
+                { name: "شوكولاتة", price: "90 ج", desc: "ميلك شيك شوكولاتة" },
+                { name: "بلوبيري", price: "90 ج", desc: "ميلك شيك بلوبيري" },
+                { name: "كوفي", price: "90 ج", desc: "ميلك شيك كوفي" },
+                { name: "وايت شوكليت", price: "100 ج", desc: "ميلك شيك وايت شوكليت" },
+                { name: "أوريو", price: "100 ج", desc: "ميلك شيك أوريو" },
+                { name: "مانجو", price: "100 ج", desc: "ميلك شيك مانجو" },
+                { name: "لوتس", price: "100 ج", desc: "ميلك شيك لوتس" },
+                { name: "كرمل", price: "100 ج", desc: "ميلك شيك كرمل" },
+                { name: "مكس شوكولات", price: "120 ج", desc: "ميلك شيك مكس شوكولات" },
+                { name: "سنكرز", price: "130 ج", desc: "ميلك شيك سنكرز" },
+                { name: "كيت كات", price: "130 ج", desc: "ميلك شيك كيت كات" },
+                { name: "بيستاشيو", price: "130 ج", desc: "ميلك شيك بيستاشيو" },
+                { name: "نوتيلا", price: "130 ج", desc: "ميلك شيك نوتيلا" }
+            ],
+            "مكس صودا 🥂": [
+                { name: "موهيتو", price: "80 ج", desc: "صودا موهيتو" },
+                { name: "صن شاين", price: "80 ج", desc: "صودا صن شاين" },
+                { name: "صن رايز", price: "90 ج", desc: "صودا صن رايز" },
+                { name: "جرين مينت", price: "80 ج", desc: "صودا جرين مينت" },
+                { name: "خوخ", price: "80 ج", desc: "صودا خوخ" },
+                { name: "فراولة", price: "80 ج", desc: "صودا فراولة" },
+                { name: "مانجو", price: "80 ج", desc: "صودا مانجو" },
+                { name: "أناناس", price: "80 ج", desc: "صودا أناناس" },
+                { name: "كيوي", price: "80 ج", desc: "صودا كيوي" },
+                { name: "كريز", price: "80 ج", desc: "صودا كريز" },
+                { name: "بلوبيري", price: "80 ج", desc: "صودا بلوبيري" },
+                { name: "باشون فروت", price: "80 ج", desc: "صودا باشون فروت" },
+                { name: "مكس بيري", price: "80 ج", desc: "صودا مكس بيري" },
+                { name: "جرين أبل", price: "80 ج", desc: "صودا جرين أبل" },
+                { name: "بلو كرواسون", price: "80 ج", desc: "صودا بلو كرواسون" },
+                { name: "بلو باشون فروت", price: "90 ج", desc: "صودا بلو باشون فروت" }
+            ],
+            "مكس أفوكادو 🥑": [
+                { name: "جرجير باللبن", price: "60 ج", desc: "جرجير طازج باللبن" },
+                { name: "أفوكادو عسل", price: "130 ج", desc: "أفوكادو مع عسل نحل" },
+                { name: "أفوكادو عسل مكسرات", price: "160 ج", desc: "أفوكادو عسل ومكسرات فاخرة" },
+                { name: "أفوكادو بلح", price: "150 ج", desc: "أفوكادو مع بلح" },
+                { name: "أفوكادو كيوي", price: "150 ج", desc: "أفوكادو مع كيوي" },
+                { name: "Power Maker", price: "180 ج", desc: "أفوكادو + كيوي + بلح + موز + جرجير + لبن + عسل + مكسرات" },
+                { name: "أفوكادو موز", price: "130 ج", desc: "أفوكادو مع موز" }
+            ],
+            "كوكتيل 🍹": [
+                { name: "سلطة فواكه", price: "80 / 100 ج", desc: "سلطة فواكه طازجة" },
+                { name: "فخفخينا", price: "50 ج", desc: "كوكتيل فخفخينا" },
+                { name: "قنبلة", price: "90 ج", desc: "كوكتيل قنبلة" }
+            ],
+            "باور جوس ⚡": [
+                { name: "ماغنسيوم", price: "90 ج", desc: "مانجو + موز + لبن" },
+                { name: "الأمير الأخضر", price: "100 ج", desc: "كيوي + تفاح أخضر + أناناس + نعناع" },
+                { name: "السلطان الأحمر", price: "100 ج", desc: "رمان + فراولة + برتقال + بنجر" },
+                { name: "فيتامين اكس", price: "120 ج", desc: "رمان + برتقال + ليمون + أناناس" },
+                { name: "جولدن كيوي", price: "120 ج", desc: "أناناس + كيوي + برتقال" },
+                { name: "تروبيكال اكس", price: "120 ج", desc: "فراولة + موز + أناناس + كيوي" },
+                { name: "ماكس باور", price: "150 ج", desc: "ريدبل + عنب + كيوي" }
+            ],
+            "الأيس كريم 🍦": [
+                { name: "فانيليا", price: "40 ج", desc: "آيس كريم فانيليا" },
+                { name: "مانجو", price: "40 ج", desc: "آيس كريم مانجو" },
+                { name: "فراولة", price: "40 ج", desc: "آيس كريم فراولة" },
+                { name: "شوكولاتة", price: "40 ج", desc: "آيس كريم شوكولاتة" },
+                { name: "أوريو", price: "40 ج", desc: "آيس كريم أوريو" },
+                { name: "توت بري", price: "40 ج", desc: "آيس كريم توت بري" },
+                { name: "زبادي توت", price: "40 ج", desc: "آيس كريم زبادي توت" },
+                { name: "بيناكولادا", price: "40 ج", desc: "آيس كريم بيناكولادا" },
+                { name: "لوتس", price: "40 ج", desc: "آيس كريم لوتس" },
+                { name: "كراميل", price: "40 ج", desc: "آيس كريم كراميل" },
+                { name: "فسدق", price: "40 ج", desc: "آيس كريم فسدق" }
+            ],
+            "الديزيرت 🍰": [
+                { name: "تشيز كيك", price: "75 ج", desc: "تشيز كيك لذيذ" },
+                { name: "شوكلت كيك", price: "75 ج", desc: "كيك الشوكولاتة" },
+                { name: "مولتن كيك", price: "85 ج", desc: "مولتن كيك ساخن" }
+            ],
+            "الإضافات ➕": [
+                { name: "صوص كراميل", price: "15 ج", desc: "إضافة صوص كراميل" },
+                { name: "صوص شوكولاتة", price: "15 ج", desc: "إضافة صوص شوكولاتة" },
+                { name: "بولة أيس كريم", price: "25 ج", desc: "إضافة بولة آيس كريم" },
+                { name: "عسل", price: "25 ج", desc: "إضافة عسل" },
+                { name: "مكسرات", price: "30 ج", desc: "إضافة مكسرات" },
+                { name: "بوبا", price: "30 ج", desc: "إضافة بوبا" }
+            ]
+        };
+
+        const categories = Object.keys(menuData);
+        let currentCat = categories[0];
+        let cart = [];
+
+        function renderCategoryButtons() {
+            const container = document.getElementById("categoryTabs");
+            container.innerHTML = "";
+            categories.forEach(cat => {
+                const btn = document.createElement("button");
+                btn.className = `cat-btn ${currentCat === cat ? "active" : ""}`;
+                btn.textContent = cat;
+                btn.onclick = () => {
+                    currentCat = cat;
+                    renderCategoryButtons();
+                    renderMenu();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function renderMenu() {
+            const container = document.getElementById("menuGrid");
+            container.innerHTML = "";
+            const items = menuData[currentCat];
+            items.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "juice-card";
+                card.innerHTML = `
+                <div>
+                    <h3>${item.name}</h3>
+                    <p>${item.desc}</p>
+                </div>
+                <div>
+                    <div class="price">${item.price}</div>
+                    <a href="juice.html?name=${encodeURIComponent(item.name)}&price=${item.price}&cat=${encodeURIComponent(currentCat)}" class="video-btn">🎬 عرض فيديو</a>
+                    <button class="add-cart-btn" onclick="addToCart('${item.name}', '${item.price}')">🛒 أضف للسلة</button>
+                </div>
+            `;
+                container.appendChild(card);
+            });
+        }
+
+        function addToCart(name, priceStr) {
+            const price = parseInt(priceStr.replace(' ج', ''));
+            const existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            showToast(`تم إضافة ${name} للسلة`);
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').textContent = count;
+            
+            const btn = document.getElementById('cartBtn');
+            if (count > 0) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+                document.getElementById('cartModal').classList.remove('active');
+            }
+
+            const cartItemsEl = document.getElementById('cartItems');
+            cartItemsEl.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                cartItemsEl.innerHTML += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price * item.qty} ج</div>
+                        </div>
+                        <div class="cart-controls">
+                            <button onclick="changeQty(${index}, 1)">+</button>
+                            <span>${item.qty}</span>
+                            <button onclick="changeQty(${index}, -1)">-</button>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('cartTotal').textContent = `${total} ج`;
+        }
+
+        function changeQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            if (cart.length > 0 || document.getElementById('cartModal').classList.contains('active')) {
+                document.getElementById('cartModal').classList.toggle('active');
+            }
+        }
+
+        function sendOrder() {
+            if (cart.length === 0) return;
+            let text = "مرحباً Juice Maker، أود طلب:\n\n";
+            let total = 0;
+            cart.forEach(item => {
+                text += `▪️ ${item.qty}x ${item.name} (${item.price * item.qty} ج)\n`;
+                total += item.price * item.qty;
+            });
+            text += `\n=================\nالإجمالي: ${total} ج\n\nشكراً لكم!`;
+            
+            const url = `https://wa.me/201141789079?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlCat = urlParams.get('cat');
+        if (urlCat && menuData[urlCat]) {
+            currentCat = urlCat;
+        }
+
+        renderCategoryButtons();
+        renderMenu();
+    </script>
+
+</body>
+
+</html>
