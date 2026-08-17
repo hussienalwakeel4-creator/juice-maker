@@ -342,11 +342,21 @@
 
         .category-tabs {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            overflow-x: auto;
             gap: 8px;
             padding: 10px 12px;
             margin-bottom: 25px;
+            position: sticky;
+            top: 56px;
+            z-index: 90;
+            background: rgba(243, 250, 240, 0.95);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .category-tabs::-webkit-scrollbar {
+            display: none;
         }
 
         .cat-btn {
@@ -359,6 +369,8 @@
             cursor: pointer;
             transition: 0.2s;
             color: #14522A;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .cat-btn.active {
@@ -821,12 +833,44 @@
                 font-size: 42px;
             }
         }
+
+        .boba-btn {
+            background: #D9F0C8;
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #1B6B2F;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+        .boba-btn:hover {
+            background: #C8E66A;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="toast" id="toastMsg">تم الإضافة بنجاح</div>
+
+    <!-- Boba Modal -->
+    <div class="cart-modal" id="bobaModal">
+        <div class="cart-content" style="text-align: center;">
+            <h2 style="color: #1B6B2F; margin-bottom: 15px;">اختر نكهة البوبا:</h2>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="boba-btn" id="coffeeBobaBtn" onclick="selectBoba('كوفي')">كوفي</button>
+                <button class="boba-btn" onclick="selectBoba('فراولة')">فراولة</button>
+                <button class="boba-btn" onclick="selectBoba('مانجا')">مانجا</button>
+                <button class="boba-btn" onclick="selectBoba('بلو بيري')">بلو بيري</button>
+                <button class="boba-btn" onclick="selectBoba('باشون')">باشون</button>
+                <button class="boba-btn" style="background: #eee; color: #555;" onclick="selectBoba('')">إلغاء</button>
+            </div>
+        </div>
+    </div>
     
     <!-- Cart Floating Button -->
     <div class="cart-float-btn" id="cartBtn" onclick="toggleCart()">
@@ -986,39 +1030,39 @@
                 { name: "زبادي بيري", price: "90 ج", desc: "زبادي بالبيري" }
             ],
             "الميلك شيك 🥤": [
-                { name: "فراولة", price: "90 ج", desc: "ميلك شيك فراولة" },
-                { name: "فانيليا", price: "90 ج", desc: "ميلك شيك فانيليا" },
-                { name: "شوكولاتة", price: "90 ج", desc: "ميلك شيك شوكولاتة" },
-                { name: "بلوبيري", price: "90 ج", desc: "ميلك شيك بلوبيري" },
-                { name: "كوفي", price: "90 ج", desc: "ميلك شيك كوفي" },
-                { name: "وايت شوكليت", price: "100 ج", desc: "ميلك شيك وايت شوكليت" },
-                { name: "أوريو", price: "100 ج", desc: "ميلك شيك أوريو" },
-                { name: "مانجو", price: "100 ج", desc: "ميلك شيك مانجو" },
-                { name: "لوتس", price: "100 ج", desc: "ميلك شيك لوتس" },
-                { name: "كرمل", price: "100 ج", desc: "ميلك شيك كرمل" },
-                { name: "مكس شوكولات", price: "120 ج", desc: "ميلك شيك مكس شوكولات" },
-                { name: "سنكرز", price: "130 ج", desc: "ميلك شيك سنكرز" },
-                { name: "كيت كات", price: "130 ج", desc: "ميلك شيك كيت كات" },
-                { name: "بيستاشيو", price: "130 ج", desc: "ميلك شيك بيستاشيو" },
-                { name: "نوتيلا", price: "130 ج", desc: "ميلك شيك نوتيلا" }
+                { name: "ميلك شيك فراولة", price: "90 ج", desc: "ميلك شيك فراولة" },
+                { name: "ميلك شيك فانيليا", price: "90 ج", desc: "ميلك شيك فانيليا" },
+                { name: "ميلك شيك شوكولاتة", price: "90 ج", desc: "ميلك شيك شوكولاتة" },
+                { name: "ميلك شيك بلوبيري", price: "90 ج", desc: "ميلك شيك بلوبيري" },
+                { name: "ميلك شيك كوفي", price: "90 ج", desc: "ميلك شيك كوفي" },
+                { name: "ميلك شيك وايت شوكليت", price: "100 ج", desc: "ميلك شيك وايت شوكليت" },
+                { name: "ميلك شيك أوريو", price: "100 ج", desc: "ميلك شيك أوريو" },
+                { name: "ميلك شيك مانجو", price: "100 ج", desc: "ميلك شيك مانجو" },
+                { name: "ميلك شيك لوتس", price: "100 ج", desc: "ميلك شيك لوتس" },
+                { name: "ميلك شيك كرمل", price: "100 ج", desc: "ميلك شيك كرمل" },
+                { name: "ميلك شيك مكس شوكولات", price: "120 ج", desc: "ميلك شيك مكس شوكولات" },
+                { name: "ميلك شيك سنكرز", price: "130 ج", desc: "ميلك شيك سنكرز" },
+                { name: "ميلك شيك كيت كات", price: "130 ج", desc: "ميلك شيك كيت كات" },
+                { name: "ميلك شيك بيستاشيو", price: "130 ج", desc: "ميلك شيك بيستاشيو" },
+                { name: "ميلك شيك نوتيلا", price: "130 ج", desc: "ميلك شيك نوتيلا" }
             ],
             "مكس صودا 🥂": [
-                { name: "موهيتو", price: "80 ج", desc: "صودا موهيتو" },
-                { name: "صن شاين", price: "80 ج", desc: "صودا صن شاين" },
-                { name: "صن رايز", price: "90 ج", desc: "صودا صن رايز" },
-                { name: "جرين مينت", price: "80 ج", desc: "صودا جرين مينت" },
-                { name: "خوخ", price: "80 ج", desc: "صودا خوخ" },
-                { name: "فراولة", price: "80 ج", desc: "صودا فراولة" },
-                { name: "مانجو", price: "80 ج", desc: "صودا مانجو" },
-                { name: "أناناس", price: "80 ج", desc: "صودا أناناس" },
-                { name: "كيوي", price: "80 ج", desc: "صودا كيوي" },
-                { name: "كريز", price: "80 ج", desc: "صودا كريز" },
-                { name: "بلوبيري", price: "80 ج", desc: "صودا بلوبيري" },
-                { name: "باشون فروت", price: "80 ج", desc: "صودا باشون فروت" },
-                { name: "مكس بيري", price: "80 ج", desc: "صودا مكس بيري" },
-                { name: "جرين أبل", price: "80 ج", desc: "صودا جرين أبل" },
-                { name: "بلو كرواسون", price: "80 ج", desc: "صودا بلو كرواسون" },
-                { name: "بلو باشون فروت", price: "90 ج", desc: "صودا بلو باشون فروت" }
+                { name: "صودا موهيتو", price: "80 ج", desc: "صودا موهيتو" },
+                { name: "صودا صن شاين", price: "80 ج", desc: "صودا صن شاين" },
+                { name: "صودا صن رايز", price: "90 ج", desc: "صودا صن رايز" },
+                { name: "صودا جرين مينت", price: "80 ج", desc: "صودا جرين مينت" },
+                { name: "صودا خوخ", price: "80 ج", desc: "صودا خوخ" },
+                { name: "صودا فراولة", price: "80 ج", desc: "صودا فراولة" },
+                { name: "صودا مانجو", price: "80 ج", desc: "صودا مانجو" },
+                { name: "صودا أناناس", price: "80 ج", desc: "صودا أناناس" },
+                { name: "صودا كيوي", price: "80 ج", desc: "صودا كيوي" },
+                { name: "صودا كريز", price: "80 ج", desc: "صودا كريز" },
+                { name: "صودا بلوبيري", price: "80 ج", desc: "صودا بلوبيري" },
+                { name: "صودا باشون فروت", price: "80 ج", desc: "صودا باشون فروت" },
+                { name: "صودا مكس بيري", price: "80 ج", desc: "صودا مكس بيري" },
+                { name: "صودا جرين أبل", price: "80 ج", desc: "صودا جرين أبل" },
+                { name: "صودا بلو كرواسون", price: "80 ج", desc: "صودا بلو كرواسون" },
+                { name: "صودا بلو باشون فروت", price: "90 ج", desc: "صودا بلو باشون فروت" }
             ],
             "مكس أفوكادو 🥑": [
                 { name: "جرجير باللبن", price: "60 ج", desc: "جرجير طازج باللبن" },
@@ -1078,14 +1122,16 @@
         function renderCategoryButtons() {
             const container = document.getElementById("categoryTabs");
             container.innerHTML = "";
-            categories.forEach(cat => {
+            categories.forEach((cat, index) => {
                 const btn = document.createElement("button");
-                btn.className = `cat-btn ${currentCat === cat ? "active" : ""}`;
+                btn.className = "cat-btn";
                 btn.textContent = cat;
                 btn.onclick = () => {
-                    currentCat = cat;
-                    renderCategoryButtons();
-                    renderMenu();
+                    const section = document.getElementById(`cat-${index}`);
+                    if(section) {
+                        const y = section.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }
                 };
                 container.appendChild(btn);
             });
@@ -1094,27 +1140,94 @@
         function renderMenu() {
             const container = document.getElementById("menuGrid");
             container.innerHTML = "";
-            const items = menuData[currentCat];
-            items.forEach(item => {
-                const card = document.createElement("div");
-                card.className = "juice-card";
-                card.innerHTML = `
-                <div>
-                    <h3>${item.name}</h3>
-                    <p>${item.desc}</p>
-                </div>
-                <div>
-                    <div class="price">${item.price}</div>
-                    <a href="juice.html?name=${encodeURIComponent(item.name)}&price=${item.price}&cat=${encodeURIComponent(currentCat)}" class="video-btn">🎬 عرض فيديو</a>
-                    <button class="add-cart-btn" onclick="addToCart('${item.name}', '${item.price}')">🛒 أضف للسلة</button>
-                </div>
-            `;
-                container.appendChild(card);
+            container.style.display = "block";
+            
+            categories.forEach((cat, index) => {
+                const section = document.createElement("div");
+                section.id = `cat-${index}`;
+                section.style.marginBottom = "40px";
+                
+                const headerContainer = document.createElement("div");
+                headerContainer.style.textAlign = "center";
+                headerContainer.innerHTML = `<h3 style="font-size: 22px; color: #1B6B2F; margin: 0 0 20px 0; display: inline-block; background: #EBF5E1; padding: 10px 25px; border-radius: 15px;">${cat}</h3>`;
+                section.appendChild(headerContainer);
+                
+                const grid = document.createElement("div");
+                grid.style.display = "flex";
+                grid.style.flexWrap = "wrap";
+                grid.style.justifyContent = "center";
+                grid.style.gap = "12px";
+                
+                const items = menuData[cat];
+                items.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "juice-card";
+                    card.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.desc}</p>
+                    </div>
+                    <div>
+                        <div class="price">${item.price}</div>
+                        <a href="juice.html?name=${encodeURIComponent(item.name)}&price=${item.price}&cat=${encodeURIComponent(cat)}" class="video-btn">🎬 عرض فيديو</a>
+                        <button class="add-cart-btn" onclick="addToCart('${item.name}', '${item.price}')">🛒 أضف للسلة</button>
+                    </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                
+                section.appendChild(grid);
+                container.appendChild(section);
             });
         }
 
+        let pendingCartItem = null;
+
         function addToCart(name, priceStr) {
-            const price = parseInt(priceStr.replace(' ج', ''));
+            let price = parseInt(priceStr.replace(' ج', ''));
+
+            if (name === "سلطة فواكه") {
+                const choice = prompt("برجاء اختيار سعر سلطة الفواكه (80 أو 100 أو 150):", "80");
+                if (!choice || !["80", "100", "150"].includes(choice.trim())) {
+                    alert("تم الإلغاء أو إدخال سعر غير صحيح.");
+                    return;
+                }
+                price = parseInt(choice.trim());
+                finalizeAddToCart("سلطة فواكه (" + choice.trim() + ")", price);
+            } else if (name.startsWith("ميلك شيك") || name.startsWith("صودا")) {
+                if (confirm("هل ترغب في إضافة بوبا (30 ج)؟")) {
+                    pendingCartItem = { name, price };
+                    if (name.startsWith("صودا")) {
+                        document.getElementById('coffeeBobaBtn').style.display = 'none';
+                    } else {
+                        document.getElementById('coffeeBobaBtn').style.display = 'block';
+                    }
+                    document.getElementById('bobaModal').classList.add('active');
+                } else {
+                    finalizeAddToCart(name, price);
+                }
+            } else {
+                finalizeAddToCart(name, price);
+            }
+        }
+
+        function selectBoba(flavor) {
+            document.getElementById('bobaModal').classList.remove('active');
+            if (!pendingCartItem) return;
+
+            let finalName = pendingCartItem.name;
+            let finalPrice = pendingCartItem.price;
+
+            if (flavor !== "") {
+                finalName += " + بوبا " + flavor;
+                finalPrice += 30;
+            }
+
+            finalizeAddToCart(finalName, finalPrice);
+            pendingCartItem = null;
+        }
+
+        function finalizeAddToCart(name, price) {
             const existing = cart.find(item => item.name === name);
             if (existing) {
                 existing.qty++;
@@ -1176,7 +1289,13 @@
 
         function sendOrder() {
             if (cart.length === 0) return;
-            let text = "مرحباً Juice Maker، أود طلب:\n\n";
+            const customerName = prompt("برجاء إدخال اسمك لتأكيد الطلب:", "");
+            if (!customerName || customerName.trim() === "") {
+                alert("يجب إدخال الاسم لإتمام الطلب.");
+                return;
+            }
+
+            let text = `مرحباً Juice Maker، أنا ${customerName.trim()}، أود طلب:\n\n`;
             let total = 0;
             cart.forEach(item => {
                 text += `▪️ ${item.qty}x ${item.name} (${item.price * item.qty} ج)\n`;
@@ -1199,12 +1318,22 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const urlCat = urlParams.get('cat');
-        if (urlCat && menuData[urlCat]) {
-            currentCat = urlCat;
-        }
 
         renderCategoryButtons();
         renderMenu();
+
+        if (urlCat && menuData[urlCat]) {
+            setTimeout(() => {
+                const idx = categories.indexOf(urlCat);
+                if (idx !== -1) {
+                    const section = document.getElementById(`cat-${idx}`);
+                    if (section) {
+                        const y = section.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({top: y, behavior: 'smooth'});
+                    }
+                }
+            }, 300);
+        }
     </script>
 
 </body>
